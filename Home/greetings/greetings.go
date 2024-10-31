@@ -11,7 +11,19 @@ func Hello(name string) (string, error) {
 		return "", errors.New("empty name")
 	}
 	message := fmt.Sprintf(randomFormat(), name)
+	//ERROR TEST   message := fmt.Sprintf(randomFormat())
 	return message, nil
+}
+
+func randomFormat() string {
+	formats := []string{
+		"Hi, %v. Welcome!",
+		"Great to see you, %v!",
+		"Hail hail, %v! Well met!",
+		"... ugh, what d'you want %v?",
+	}
+
+	return formats[rand.Intn(len(formats))]
 }
 
 func Hellos(names []string) (map[string]string, error) {
@@ -24,15 +36,4 @@ func Hellos(names []string) (map[string]string, error) {
 		messages[name] = message
 	}
 	return messages, nil
-}
-
-func randomFormat() string {
-	formats := []string{
-		"Hi, %v. Welcome!",
-		"Great to see you, %v!",
-		"Hail hail, %v! Well met!",
-		"... ugh, what d'you want %v?",
-	}
-
-	return formats[rand.Intn(len(formats))]
 }
